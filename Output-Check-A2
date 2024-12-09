@@ -1,1 +1,15 @@
-python3: can't open file '/home/rrpatel51/OPS445-Assignment2/./CheckA2.py': [Errno 2] No such file or directory
+test_argparse_help (__main__.TestArgs.test_argparse_help)
+duim.py -h returns the required options ... ok
+test_dir_dict_func (__main__.TestDirDict.test_dir_dict_func)
+given mock du input, create_dir_dict returns properly formatted dict ... ok
+test_du_sub (__main__.TestDuSub.test_du_sub)
+du_sub returns a list ... ok
+test_unallowed_module (__main__.TestModuleRestriction.test_unallowed_module)
+you have imported a prohibited module ... ok
+test_percent (__main__.TestPercent.test_percent)
+percent_to_graph returns correct '##    ' format ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.123s
+
+OK
