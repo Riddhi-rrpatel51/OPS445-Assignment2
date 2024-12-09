@@ -3,7 +3,6 @@
 import subprocess
 import argparse
 import sys
-import os
 
 def call_du_sub(target_directory):
     """
@@ -20,7 +19,7 @@ def call_du_sub(target_directory):
         )
         stdout, stderr = process.communicate()
         if process.returncode != 0:
-            raise RuntimeError(f"Error calling du: {stderr.strip()}")
+            print(f"Warning: Error calling du: {stderr.strip()}")  # Print warning instead of raising an error
         return stdout.strip().split('\n')
     except Exception as e:
         print(f"Error: {e}")
@@ -79,8 +78,11 @@ def get_pid_list():
     Returns a list of PIDs as strings for a given program.
     :return: List of strings representing PIDs.
     """
-    result = os.popen('pidof <your_program>').read()
-    return result.split()  # List of PIDs as strings
+    try:
+        result = subprocess.check_output(['pidof', '<your_program>'], text=True)  # Use subprocess instead of os.popen
+        return result.split()  # List of PIDs as strings
+    except subprocess.CalledProcessError:
+        return []  # Return an empty list if the program is not found
 
 def get_rss_total(pid):
     """
@@ -121,3 +123,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
